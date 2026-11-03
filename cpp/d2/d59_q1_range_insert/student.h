@@ -5,16 +5,22 @@
 template <typename T>
 void CP::vector<T>::insert(iterator position,iterator first,iterator last) {
   vector<int> temp;
-  for(auto i=begin(); i<first; ++i){
-    temp.push_back(mData[i]);
+  size_t count = last-first;
+  if(count == 0) return;
+  size_t pos = position - begin();
+
+  ensureCapacity(mSize+count);
+  for(size_t i = mSize; i>pos; --i){
+    mData[i + count - 1] = mData[i - 1]; // เลื่อนไปฝั่งขวา
   }
-  for(int i=first; i<last; ++i){
-    temp.push_back(mData[i]);
+  iterator src = first;
+  size_t dest = pos;
+  while(src!=last){
+    mData[dest] = *src;
+    ++src;
+    ++dest;
   }
-  for(int i=last; i<end(); ++i){
-    temp.push_back(mData[i]);
-  }
-  *this = temp;
+  mSize+=count;
 }
 
 #endif
