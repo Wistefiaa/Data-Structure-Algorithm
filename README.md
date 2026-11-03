@@ -1,4 +1,4 @@
-# Data Structure & Algorithm(2110328)
+# Data Structure & Algorithm (2110328)
 
 ## Repository Structure
 - Folder will be separate by day of learning.
